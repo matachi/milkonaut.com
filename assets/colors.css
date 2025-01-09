@@ -1,0 +1,369 @@
+/* Colors
+ * -------------------------------------------------------------------------- */
+
+:root {
+  /* Core Colors
+   * These variables are only for use in _this_ stylesheet
+   * If you add a new rgb like "--rgb-pink", you'll want to add a
+   * corresponding dark-mode version to the media query just below
+   * ------------------------------------------------------------------------ */
+
+  --rgb-black: 0, 0, 0;
+  --rgb-white: 255, 255, 255;
+  --rgb-almost-black: 35, 28, 51; /* Really dark purple */
+  --rgb-almost-white: 236, 233, 230; /* Creamy white */
+
+  --rgb-mint: 157, 255, 236;
+  --rgb-red: 201, 36, 0;
+  --rgb-orange: 248, 121, 23;
+  --rgb-gold: 166, 119, 0;
+  --rgb-yellow: 255, 214, 10;
+  --rgb-green: 41, 152, 80;
+  --rgb-teal: 19, 142, 158;
+  --rgb-blue: 0, 116, 228;
+  --rgb-purple: 85, 34, 250;
+  --rgb-pink: 179, 25, 99;
+  --rgb-brown: 119, 109, 99;
+
+  --rgb-gray: 116, 116, 128;
+  --rgb-medium-gray: 226, 221, 215;
+  --rgb-light-gray: 251, 250, 249;
+  --rgb-neutral-light-gray: 244, 243, 245;
+  --rgb-always-blue: 0, 116, 228;
+  --rgb-canary: 255, 245, 202;
+  --rgb-yellow-gradient-middle: 255, 245, 205;
+  --rgb-peach: 255, 229, 218;
+  --rgb-coral: 249, 92, 92;
+  --rgb-light-green: 22, 186, 91;
+  --rgb-nighttime: 49, 51, 87;
+  --rgb-background: var(--rgb-white);
+  --rgb-ink: var(--rgb-almost-black);
+  --rgb-overlay: var(--rgb-white);
+
+  &[data-color-scheme="dark"] {
+    --rgb-almost-black: 27, 39, 51;
+
+    --rgb-red: 255, 120, 120;
+    --rgb-orange: 255, 184, 92;
+    --rgb-gold: 249, 213, 122;
+    --rgb-yellow: 251, 225, 144;
+    --rgb-green: 105, 240, 174;
+    --rgb-teal: 157, 255, 236; /* Teal = Mint in dark mode */
+    --rgb-blue: 80, 162, 255;
+    --rgb-purple: 134, 126, 255;
+    --rgb-pink: 242, 136, 187;
+    --rgb-brown: 185, 165, 151;
+
+    --rgb-gray: 116, 116, 128;
+    --rgb-medium-gray: 51, 60, 71;
+    --rgb-light-gray: 39, 50, 62;
+    --rgb-neutral-light-gray: 39, 50, 62;
+    --rgb-yellow-gradient-middle: 225, 203, 133;
+    --rgb-peach: 83, 62, 25;
+    --rgb-coral: 222, 137, 131;
+    --rgb-light-green: 115, 240, 105;
+    --rgb-background: var(--rgb-almost-black);
+    --rgb-ink: var(--rgb-almost-white);
+    --rgb-overlay: 32, 44, 56; /* Lightened-up almost-black */
+  }
+
+  /* Hey World doesn't use JS, so we need to rely on CSS media queries to detect color scheme. */
+  @media (prefers-color-scheme: dark) {
+    &:not([data-color-scheme="light"]) {
+      --rgb-almost-black: 27, 39, 51;
+
+      --rgb-red: 255, 120, 120;
+      --rgb-orange: 255, 184, 92;
+      --rgb-gold: 249, 213, 122;
+      --rgb-yellow: 251, 225, 144;
+      --rgb-green: 105, 240, 174;
+      --rgb-teal: 157, 255, 236; /* Teal = Mint in dark mode */
+      --rgb-blue: 80, 162, 255;
+      --rgb-purple: 134, 126, 255;
+      --rgb-pink: 242, 136, 187;
+      --rgb-brown: 185, 165, 151;
+
+      --rgb-gray: 116, 116, 128;
+      --rgb-medium-gray: 51, 60, 71;
+      --rgb-light-gray: 39, 50, 62;
+      --rgb-neutral-light-gray: 39, 50, 62;
+      --rgb-yellow-gradient-middle: 225, 203, 133;
+      --rgb-peach: 83, 62, 25;
+      --rgb-coral: 222, 137, 131;
+      --rgb-light-green: 115, 240, 105;
+      --rgb-background: var(--rgb-almost-black);
+      --rgb-ink: var(--rgb-almost-white);
+      --rgb-overlay: 32, 44, 56; /* Lightened-up almost-black */
+    }
+  }
+
+  /* These variables are for use in _other_ stylesheets
+   * ------------------------------------------------------------------------ */
+
+  /* General Purpose Colors
+   * Usually for utility classes that include a --primary, --secondary, etc. suffix */
+  --color-black: rgb(var(--rgb-black));
+  --color-almost-black: rgb(var(--rgb-almost-black));
+  --color-always-black: rgb(var(--rgb-almost-black));
+  --color-primary: rgb(var(--rgb-mint));
+  --color-secondary: rgb(var(--rgb-blue));
+  --color-tertiary: rgb(var(--rgb-purple));
+  --color-positive: rgb(var(--rgb-green));
+  --color-negative: rgb(var(--rgb-red));
+  --color-coral: rgb(var(--rgb-coral));
+  --color-disabled: rgb(var(--rgb-gray));
+  --color-always-white: rgb(var(--rgb-white));
+  --color-yellow: rgb(var(--rgb-yellow));
+  --color-peach: rgb(var(--rgb-peach));
+  --color-orange: rgb(var(--rgb-orange));
+
+  /* Backgrounds
+   * Anything that has a background
+   * -thin/-thick variants are for things like navbars that look like the bg until scrolled under
+   * -glint variants are for use in gradients */
+  --color-bg--main: rgb(var(--rgb-background));
+  --color-bg--main-transparent: rgba(var(--rgb-background), 0);
+  --color-bg--main-thin: rgba(var(--rgb-background), 0.5);
+  --color-bg--main-very-thin: rgba(var(--rgb-background), 0.25);
+  --color-bg--main-thick: rgba(var(--rgb-background), 0.95);
+  --color-bg--main-reversed: rgb(var(--rgb-ink));
+
+  --color-bg--surface: rgba(var(--rgb-medium-gray), 0.4);
+  --color-bg--surface-opaque: rgb(var(--rgb-medium-gray));
+  --color-bg--surface-solid: #f3f1ef;
+  --color-bg--surface-glint: rgba(var(--rgb-medium-gray), 0.15);
+  --color-bg--surface-glint-transparent: rgba(var(--rgb-light-gray), 0);
+  --color-bg--surface-glint-opaque: rgb(var(--rgb-light-gray));
+  --color-bg--surface-glint-thick: rgb(var(--rgb-light-gray), 0.9);
+  --color-bg--surface-light: rgba(var(--rgb-ink), 0.05);
+  --color-bg--surface-dark: rgba(var(--rgb-ink), 0.33);
+
+  --color-bg--neutral: rgb(var(--rgb-neutral-light-gray));
+
+  --color-bg--positive: rgba(var(--rgb-green), 0.25);
+  --color-bg--positive-glint: rgba(var(--rgb-green), 0.15);
+
+  --color-bg--negative: rgb(var(--rgb-red), 0.25);
+  --color-bg--negative-glint: rgb(var(--rgb-red), 0.15);
+  --color-bg--negative-glint-thin: rgb(var(--rgb-red), 0.05);
+
+  --color-bg--flash-notice: rgba(var(--rgb-ink), 0.65);
+
+  --color-bg--primary: rgba(var(--rgb-mint), 0.15);
+  --color-bg--primary-glint: rgba(var(--rgb-mint), 0.05);
+
+  --color-bg--secondary: rgba(var(--rgb-blue), 0.15);
+  --color-bg--secondary-glint: rgba(var(--rgb-blue), 0.05);
+  --color-bg--secondary-opaque: #E0EAF9;
+  --color-bg--secondary-glint-opaque: #F4F8FE;
+
+  --color-bg--tertiary: rgba(var(--rgb-purple), 0.15);
+  --color-bg--tertiary-glint: rgba(var(--rgb-purple), 0.05);
+  --color-bg--tertiary-opaque: #E5DFFF;
+
+  --color-bg--warning: rgb(var(--rgb-canary));
+  --color-bg--warning-opaque: rgb(var(--rgb-canary));
+  --color-bg--warning-glint: rgb(var(--rgb-peach));
+  --color-bg--warning-glint-opaque: rgb(var(--rgb-peach));
+  --color-bg--warning-urgent: rgb(var(--rgb-orange), 0.33);
+
+  --color-bg--collection: rgba(var(--rgb-green), 0.25);
+  --color-bg--collection-glint: rgba(var(--rgb-mint), 0.1);
+  --color-bg--collection-opaque: #D7EFDE;
+  --color-bg--collection-glint-opaque: #F2FDF9;
+
+  --color-bg--world-primary: #8edacd;
+  --color-bg--world-secondary: #4c63e1;
+  --color-bg--world-tertiary: #6550f0;
+
+  --color-bg--highlight: rgba(var(--rgb-yellow), 0.25);
+
+  --color-bg--overlay: rgb(var(--rgb-overlay));
+  --color-bg--overlay-dark: rgb(var(--rgb-almost-black), 0.95);
+
+  --color-bg--receded: rgb(var(--rgb-ink), 0.03);
+  --color-bg--receded-on-isolated-content: rgb(var(--rgb-ink), 0.03);
+
+  --color-bg--card: #fff;
+  --color-bg--sheet: var(--color-bg--main);
+  --color-bg--sheet-transparent: var(--color-bg--main-transparent);
+  --color-bg--entry-sheet: var(--color-bg--main);
+
+  --color-bg--message-content: #fff;
+
+  --color-bg--popup: rgba(var(--rgb-ink), 0.25);
+  --color-bg--tooltip: rgb(var(--rgb-almost-black));
+
+  --color-bg--go-button: rgba(var(--rgb-ink), 0.2);
+
+  --color-bg--note: rgba(var(--rgb-yellow), 0.35);
+  --color-bg--note-glint: rgba(var(--rgb-yellow), 0.15);
+  --color-bg--note-opaque: #FFF6C8;
+
+  --color-bg--thread: #FAF9F7;
+
+  --color-bg--note-blend: rgb(var(--rgb-yellow-gradient-middle));
+
+  --color-bg--nighttime: rgb(var(--rgb-nighttime));
+  --color-bg--nighttime-glint: rgba(var(--rgb-nighttime), 0.25);
+
+  --color-recycling: rgb(var(--rgb-light-green));
+
+  /* Text
+   * Any textual content
+   * --color-txt--on... variants are for text displayed on a corresponding --color-bg... background */
+  --color-txt: rgb(var(--rgb-ink));
+  --color-txt--reversed: rgb(var(--rgb-background));
+
+  --color-txt--subtle: rgba(var(--rgb-ink), 0.66);
+  --color-txt--very-subtle: rgba(var(--rgb-ink), 0.33);
+  --color-txt--subtle-reversed: rgba(var(--rgb-background), 0.66);
+
+  --color-txt--action: rgb(var(--rgb-blue));
+  --color-txt--placeholder: rgba(var(--rgb-ink), 0.60);
+
+  --color-txt--on-message-content: rgb(var(--rgb-almost-black));
+  --color-txt--action-on-message-content: rgb(var(--rgb-always-blue));
+  --color-txt--subtle-on-message-content: rgba(var(--rgb-almost-black), 0.66);
+
+
+  /* Borders
+   * Usually borders or rules that either divide or surround a component */
+  --color-border: rgba(var(--rgb-ink), 0.15);
+  --color-border--reversed: rgba(var(--rgb-almost-white), 0.25);
+  --color-border--light: rgba(var(--rgb-ink), 0.05);
+  --color-border--medium: rgba(var(--rgb-ink), 0.15);
+  --color-border--heavy: rgba(var(--rgb-ink), 0.5);
+  --color-border--solid: rgb(var(--rgb-ink));
+  --color-border--popup: rgba(var(--rgb-black), 0.15);
+
+
+  /* Odds & Ends
+   * Not really a category for these guys, but still purpose-built colors */
+  --color-shadow: rgba(var(--rgb-medium-gray), 0.5);
+  --color-shadow--light: rgba(var(--rgb-medium-gray), 0.3);
+  --color-shadow--dark: rgba(var(--rgb-black), 0.1);
+  --color-shadow--very-dark: rgba(var(--rgb-black), 0.2);
+  --color-focus-ring: #a4d2ff;
+  --color-unread: rgb(var(--rgb-orange));
+  --color-quote-toggle: #0068c8;
+  --color-tertiary--contrast: rgb(var(--rgb-purple));
+  --color-collection: rgb(var(--rgb-green));
+  --color-workflow: rgb(var(--rgb-coral));
+
+
+  /* Dark Mode Overrides
+   * Sometimes dark mode needs a different opacity or color */
+  &[data-color-scheme="dark"] {
+    --color-bg--surface: rgba(var(--rgb-gray), 0.2);
+    --color-bg--surface-glint: rgba(var(--rgb-gray), 0.10);
+    --color-bg--surface-solid: #363f4b;
+    --color-bg--positive: rgba(var(--rgb-green), 0.18);
+    --color-bg--positive-glint: rgba(var(--rgb-green), 0.10);
+    --color-bg--warning: rgba(var(--rgb-peach), 0.15);
+    --color-bg--warning-opaque: rgb(60, 58, 61);
+    --color-bg--warning-glint: rgba(var(--rgb-peach), 0.1);
+    --color-bg--warning-glint-opaque: rgb(51, 52, 59);
+    --color-bg--secondary-opaque: #28394F;
+    --color-bg--secondary-glint-opaque: #223040;
+    --color-bg--tertiary-opaque: #343D5A;
+    --color-bg--collection: rgba(var(--rgb-green), 0.3);
+    --color-bg--collection-glint: rgba(var(--rgb-mint), 0.2);
+    --color-bg--collection-opaque: #486A61;
+    --color-bg--collection-glint-opaque: #455A60;
+    --color-bg--world-primary: #315b41;
+    --color-bg--world-secondary: #182b93;
+    --color-bg--world-tertiary: #544b93;
+    --color-bg--note: rgba(var(--rgb-yellow));
+    --color-bg--note-glint: rgba(var(--rgb-yellow), 0.8);
+    --color-bg--negative: rgb(var(--rgb-red), 0.5);
+    --color-bg--negative-glint: rgb(var(--rgb-red), 0.3);
+    --color-bg--receded: rgba(var(--rgb-black), 0.15);
+    --color-bg--receded-on-isolated-content: rgba(var(--rgb-black), 0.03);
+    --color-bg--card: rgb(var(--rgb-overlay));
+    --color-bg--sheet: var(--color-bg--surface-glint-opaque);
+    --color-bg--sheet-transparent: rgba(var(--rgb-light-gray), 0);
+    --color-bg--entry-sheet: var(--color-bg--surface-glint-opaque);
+    --color-bg--thread: var(--color-shadow);
+    --color-bg--highlight: rgba(var(--rgb-yellow), 0.85);
+    --color-bg--tooltip: rgb(var(--rgb-gray));
+    --color-shadow: rgba(var(--rgb-black), 0.15);
+    --color-shadow--light: rgba(var(--rgb-black), 0.12);
+    --color-shadow--dark: rgba(var(--rgb-black), 0.25);
+    --color-shadow--very-dark: rgba(var(--rgb-black), 0.33);
+    --color-tertiary--contrast: rgb(108, 67, 246);
+    --color-bg--flash-notice: rgba(var(--rgb-white), 0.65);
+  }
+
+  /* Hey World doesn't use JS, so we need to rely on CSS media queries to detect color scheme. */
+  @media (prefers-color-scheme: dark) {
+    &:not([data-color-scheme="light"]) {
+      --color-bg--surface: rgba(var(--rgb-gray), 0.2);
+      --color-bg--surface-glint: rgba(var(--rgb-gray), 0.10);
+      --color-bg--surface-solid: #363f4b;
+      --color-bg--positive: rgba(var(--rgb-green), 0.18);
+      --color-bg--positive-glint: rgba(var(--rgb-green), 0.10);
+      --color-bg--warning: rgba(var(--rgb-peach), 0.15);
+      --color-bg--warning-opaque: rgb(60, 58, 61);
+      --color-bg--warning-glint: rgba(var(--rgb-peach), 0.1);
+      --color-bg--warning-glint-opaque: rgb(51, 52, 59);
+      --color-bg--secondary-opaque: #28394F;
+      --color-bg--secondary-glint-opaque: #223040;
+      --color-bg--tertiary-opaque: #343D5A;
+      --color-bg--collection: rgba(var(--rgb-green), 0.3);
+      --color-bg--collection-glint: rgba(var(--rgb-mint), 0.2);
+      --color-bg--collection-opaque: #486A61;
+      --color-bg--collection-glint-opaque: #455A60;
+      --color-bg--world-primary: #315b41;
+      --color-bg--world-secondary: #182b93;
+      --color-bg--world-tertiary: #544b93;
+      --color-bg--note: rgba(var(--rgb-yellow));
+      --color-bg--note-glint: rgba(var(--rgb-yellow), 0.8);
+      --color-bg--negative: rgb(var(--rgb-red), 0.5);
+      --color-bg--negative-glint: rgb(var(--rgb-red), 0.3);
+      --color-bg--receded: rgba(var(--rgb-black), 0.15);
+      --color-bg--receded-on-isolated-content: rgba(var(--rgb-black), 0.03);
+      --color-bg--card: rgb(var(--rgb-overlay));
+      --color-bg--sheet: var(--color-bg--surface-glint-opaque);
+      --color-bg--sheet-transparent: rgba(var(--rgb-light-gray), 0);
+      --color-bg--entry-sheet: var(--color-bg--surface-glint-opaque);
+      --color-bg--thread: var(--color-shadow);
+      --color-bg--highlight: rgba(var(--rgb-yellow), 0.85);
+      --color-bg--tooltip: rgb(var(--rgb-gray));
+      --color-shadow: rgba(var(--rgb-black), 0.15);
+      --color-shadow--light: rgba(var(--rgb-black), 0.12);
+      --color-shadow--dark: rgba(var(--rgb-black), 0.25);
+      --color-shadow--very-dark: rgba(var(--rgb-black), 0.33);
+      --color-tertiary--contrast: rgb(108, 67, 246);
+      --color-bg--flash-notice: rgba(var(--rgb-white), 0.65);
+    }
+  }
+
+  /* Define calendar colors */
+  --calendar-color-red: color-mix(in srgb, rgb(var(--rgb-red)) 75%, rgb(var(--rgb-white)));
+  --calendar-color-red-glint: color-mix(in srgb, rgb(var(--rgb-red)) 15%, rgb(var(--rgb-background)));
+
+  --calendar-color-gold: color-mix(in srgb, rgb(var(--rgb-gold)) 80%, rgb(var(--rgb-white)));
+  --calendar-color-gold-glint: color-mix(in srgb, rgb(var(--rgb-gold)) 15%, rgb(var(--rgb-background)));
+
+  --calendar-color-green: color-mix(in srgb, rgb(var(--rgb-green)) 80%, rgb(var(--rgb-white)));
+  --calendar-color-green-glint: color-mix(in srgb, rgb(var(--rgb-green)) 15%, rgb(var(--rgb-background)));
+
+  --calendar-color-teal: color-mix(in srgb, rgb(var(--rgb-teal)) 80%, rgb(var(--rgb-white)));
+  --calendar-color-teal-glint: color-mix(in srgb, rgb(var(--rgb-teal)) 15%, rgb(var(--rgb-background)));
+
+  --calendar-color-blue: color-mix(in srgb, rgb(var(--rgb-blue)) 85%, rgb(var(--rgb-white)));
+  --calendar-color-blue-glint: color-mix(in srgb, rgb(var(--rgb-blue)) 15%, rgb(var(--rgb-background)));
+
+  --calendar-color-purple: color-mix(in srgb, rgb(var(--rgb-purple)) 80%, rgb(var(--rgb-white)));
+  --calendar-color-purple-glint: color-mix(in srgb, rgb(var(--rgb-purple)) 15%, rgb(var(--rgb-background)));
+
+  --calendar-color-pink: color-mix(in srgb, rgb(var(--rgb-pink)) 70%, rgb(var(--rgb-white)));
+  --calendar-color-pink-glint: color-mix(in srgb, rgb(var(--rgb-pink)) 15%, rgb(var(--rgb-background)));
+
+  --calendar-color-brown: color-mix(in srgb, rgb(var(--rgb-brown)) 90%, rgb(var(--rgb-white)));
+  --calendar-color-brown-glint: color-mix(in srgb, rgb(var(--rgb-brown)) 15%, rgb(var(--rgb-background)));
+
+  --calendar-color-black: rgb(var(--rgb-ink));
+  --calendar-color-black-glint: color-mix(in srgb, rgb(var(--rgb-ink)) 15%, rgb(var(--rgb-background)));
+}

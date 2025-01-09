@@ -1,0 +1,81 @@
+.trix-content > .__body {
+  overflow: visible !important;
+  height: initial !important;
+  min-height: 1rem;
+}
+
+* {
+  /* CSS transitions can affect the email height. This can break our geometry
+   * calculations with Javascript. See +MessageContentContext.performMeasurement+.
+   * Not removing transitions completely because emails can rely on their final state
+   * to look ok, so we just set a 0 duration for them. */
+  transition-duration: 0s !important;
+}
+
+h1 {
+  font-size: 1.3em;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+ul,
+ol {
+  margin: 0;
+}
+
+ul li,
+ol li,
+li li {
+  padding: 0;
+  margin: 0;
+}
+
+pre {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  font-family: monospace;
+  font-size: 0.9em;
+  margin: 0;
+  padding: 0.5em 2%;
+  white-space: pre-wrap;
+  background-color: var(--color-bg--surface);
+  overflow-x: auto;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--color-txt--action-on-message-content);
+
+  /* Use foreground colors, if applied via color-picker */
+  [style*="color"] {
+    text-decoration: underline !important;
+    text-decoration-color: unset !important;
+  }
+}
+
+table {
+  border-color: transparent;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.email_img {
+  width: auto;
+  max-width: 99%;
+  border: 1px solid var(--color-border);
+}
+
+img:not([width]):not([height]) {
+  min-width: 1px;
+  min-height: 1px;
+}
+
+/* Fix instances where RTL characters are cut off */
+div[dir="rtl"] {
+  line-height: normal;
+}
