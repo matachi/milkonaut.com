@@ -1,0 +1,36 @@
+name: Deploy on master branch push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: 1.18
+          otp-version: 26  # Specify OTP version compatible with Elixir 1.18
+
+      - name: Install dependencies
+        run: |
+          mix local.hex --force
+          mix local.rebar --force
+          mix deps.get
+
+      - name: Build project
+        run: |
+          mix build
+
+      - name: Deploy application
+        run: |
+          # Add your deployment commands here
+          echo "Deploying application..."
+          # Example: rsync, scp, or using a deployment tool like edeliver or distillery
