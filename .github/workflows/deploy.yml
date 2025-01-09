@@ -11,7 +11,7 @@ permissions:
   id-token: write  # This permission is required for deploy-pages
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
