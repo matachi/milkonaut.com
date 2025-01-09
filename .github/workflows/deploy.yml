@@ -7,8 +7,8 @@ on:
 
 permissions:
   contents: write
-    pages: write
-      id-token: write  # This permission is required for deploy-pages
+  pages: write
+  id-token: write  # This permission is required for deploy-pages
 
 jobs:
   deploy:
